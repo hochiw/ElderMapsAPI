@@ -9,8 +9,12 @@ router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: true}));
 
 router.get("/api",function(req,res) {
-    res.send("Fuck u");
+    res.send("This is the home page for the API");
 })
+
+router.get("/api/get_user?",controller.getUser);
+
+
 router.post('/register', controller.createUser);
 
 router.get('/account/settings/changeusername', function(req,res) {

@@ -3,8 +3,12 @@ var passwordHash = require('password-hash');
 var server = require('../app');
 
 
-var UserInfo = mongoose.model('account');
+var UserInfo = mongoose.model('profile');
 var exports = module.exports = {};
+
+exports.getUser = function(req,user) {
+    UserInfo.findOne({_id: req.query.id},user);
+};
 
 exports.createUser = function(req,res) {
 

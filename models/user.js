@@ -24,4 +24,4 @@ var UserInfo = mongoose.Schema(
 
     }
 );
-mongoose.model('account',UserInfo);
+mongoose.model('profile',UserInfo);
