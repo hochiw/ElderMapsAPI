@@ -6,8 +6,12 @@ var server = require('../app');
 var UserInfo = mongoose.model('profile');
 var exports = module.exports = {};
 
-exports.getProfile = function(req,user) {
-    UserInfo.findOne({_id: req.query.id},user);
+exports.getProfile = function(req,res) {
+    UserInfo.findOne({_id: req.query.id},function(err,user) {
+        if(!err) {
+            res.send(user);
+        }
+    });
 };
 
 exports.createProfile = function(req,res) {
