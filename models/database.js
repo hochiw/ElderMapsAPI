@@ -8,7 +8,6 @@ var url = 'mongodb://'+db_account+':'+db_password+'@'+ db_url + db_account;
 
 mongoose.connect(url,{useNewUrlParser: true}).then(
     () => {console.log("Connected to database")},
-    err => {console.log("Error: Failed to connect to database")}
-);
+    err => {console.log("Error: Failed to connect to database")});
 
 require('./user.js');
