@@ -30,12 +30,10 @@ exports.search = function(req,res) {
     url += "radius=" + req.query.radius + "&";
     url += "type=" + req.query.pType + "&";
     url += "key=" + process.env.gapi;
-    console.log(url);
-    request(url,{
+    res.send(request(url,{
         json:true}, function (err,res,body) {
-            res.send(body);
-        });
-
+            return body;
+        }));
     };
 
 exports.createProfile = function(req,res) {
