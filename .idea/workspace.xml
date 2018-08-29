@@ -69,7 +69,7 @@
       <file leaf-file-name="controller.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/controllers/controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
+            <state relative-caret-position="146">
               <caret line="32" column="37" lean-forward="false" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="37" />
               <folding />
             </state>
@@ -112,8 +112,8 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="23" />
-    <option name="y" value="304" />
+    <option name="x" value="19" />
+    <option name="y" value="28" />
     <option name="width" value="1280" />
     <option name="height" value="774" />
   </component>
@@ -216,15 +216,15 @@
       <workItem from="1533732187972" duration="311000" />
       <workItem from="1534309198178" duration="4140000" />
       <workItem from="1534422307949" duration="144000" />
-      <workItem from="1535515033275" duration="7238000" />
+      <workItem from="1535515033275" duration="8169000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11833000" />
+    <option name="totallyTimeSpent" value="12764000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="23" y="304" width="1280" height="774" extended-state="0" />
+    <frame x="19" y="28" width="1280" height="774" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2494043" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -441,7 +441,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
+        <state relative-caret-position="146">
           <caret line="32" column="37" lean-forward="false" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="37" />
           <folding />
         </state>

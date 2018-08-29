@@ -29,12 +29,22 @@ exports.search = function(req,res) {
     url += "location=" + req.query.location + "&";
     url += "radius=" + req.query.radius + "&";
     url += "type=" + req.query.pType + "&";
-    url += "fields=formatted_address,name,rating,opening_hours,geometry&"
+    url += "opennow=true&"
     url += "key=" + process.env.gapi;
     request(url,{
         json:true}, function (err,obj) {
         if (err) res.send(err);
-        res.send(obj.body);
+        var result = [];
+        for (var i = 0;i < obj.body.results.length; i++) {
+            if (obj.body.results[i].opening_hours.open_now == false) continue;
+            result[i] = {
+                "name":obj.body.results[i].name,
+                "address":obj.body.results[i].vicinity,
+                "location":obj.body.results[i].geometry.location,
+                "rating":obj.body.results[i].rating
+            }
+        }
+        res.send(result);
     })
     };
 
