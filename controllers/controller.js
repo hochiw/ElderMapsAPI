@@ -32,6 +32,7 @@ exports.search = function(req,res) {
     url += "key=" + process.env.gapi;
     res.send(request(url,{
         json:true}, function (err,res,body) {
+        console.log(res.body);
             return body;
         }));
     };
