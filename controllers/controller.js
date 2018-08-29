@@ -33,8 +33,7 @@ exports.search = function(req,res) {
     console.log(url);
     request(url), {
         json:true},(err,res,body) => {
-            console.log(body);
-            res.send(body.url);
+            res.send(body);
         }
     };
 
