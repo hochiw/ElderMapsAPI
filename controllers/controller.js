@@ -31,10 +31,10 @@ exports.search = function(req,res) {
     url += "type=" + req.query.pType + "&";
     url += "key=" + process.env.gapi;
     console.log(url);
-    request(url), {
-        json:true},(err,res,body) => {
+    request(url,{
+        json:true}, function (err,res,body) {
             res.send(body);
-        }
+        };
     };
 
 exports.createProfile = function(req,res) {
