@@ -8,8 +8,11 @@ var UserInfo = mongoose.Schema(
         },
         "history": [{
             "name": {type: String},
-            "latitude": {type: Number},
-            "longitude": {type: Number},
+            "address" : {type: String},
+            "location": {
+                "latitude": {type: Number},
+                "longitude": {type: Number}
+            },
             "rating": {type: Number},
             "time": {type: Date, default: Date.now}
         }]
