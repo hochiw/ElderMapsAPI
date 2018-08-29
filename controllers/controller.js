@@ -29,8 +29,8 @@ exports.search = function(req,res) {
     url += "location=" + req.query.location + "&";
     url += "radius=" + req.query.radius + "&";
     url += "type=" + req.query.pType + "&";
-  //  url += "key=" + process.env.gapi;
-    url += "key=AIzaSyAFY7Mtw3BFobTctWk_cSVsamHGokfHFvA";
+    url += "fields=formatted_address,name,rating,opening_hours,geometry&"
+    url += "key=" + process.env.gapi;
     request(url,{
         json:true}, function (err,obj) {
         if (err) res.send(err);
