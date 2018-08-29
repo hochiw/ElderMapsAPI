@@ -29,11 +29,13 @@ exports.search = function(req,res) {
     url += "location=" + req.query.location + "&";
     url += "radius=" + req.query.radius + "&";
     url += "type=" + req.query.pType + "&";
-    url += "key=" + process.env.gapi;
-    res.send(request(url,{
-        json:true}, function (err,res,body) {
-            return res.body;
-        }));
+  //  url += "key=" + process.env.gapi;
+    url += "key=AIzaSyAFY7Mtw3BFobTctWk_cSVsamHGokfHFvA";
+    request(url,{
+        json:true}, function (err,obj) {
+        if (err) res.send(err);
+        res.send(obj.body);
+    })
     };
 
 exports.createProfile = function(req,res) {
