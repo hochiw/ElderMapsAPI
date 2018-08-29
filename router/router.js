@@ -14,7 +14,8 @@ router.get("/api",function(req,res) {
 
 router.get("/api/getProf?",controller.getProfile);
 
-
 router.get('/api/setProf', controller.createProfile);
+
+router.get('/api/getHistory?', controller.getHistory);
 
 module.exports = router;
