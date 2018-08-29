@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var UserInfo = mongoose.Schema(
     {
-        "isHelper" : Boolean,
+        "isHelper" : {type: Boolean, default: false},
         "condition": {
             "walkPace": {type: Number, default: 1},
             "hasCar": {type: Boolean, default: false}
