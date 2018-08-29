@@ -34,7 +34,8 @@ exports.search = function(req,res) {
     request(url,{
         json:true}, function (err,res,body) {
             res.send(body);
-        };
+        });
+
     };
 
 exports.createProfile = function(req,res) {
