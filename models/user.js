@@ -1,14 +1,17 @@
 var mongoose = require('mongoose');
 var UserInfo = mongoose.Schema(
     {
-        "survey": {
-            "canWalk": {type: Boolean, default: true},
-            "walkFast": {type: Boolean, default: true}
+        "isHelper" : Boolean,
+        "condition": {
+            "walkPace": {type: Number, default: 1},
+            "hasCar": {type: Boolean, default: false}
         },
         "history": [{
             "name": {type: String},
-            "location": {type: String},
-            "rating": {type: Number}
+            "latitude": {type: Number},
+            "longitude": {type: Number},
+            "rating": {type: Number},
+            "time": {type: Date, default: Date.now}
         }]
     }
 );
