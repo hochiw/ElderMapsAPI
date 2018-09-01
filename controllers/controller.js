@@ -38,7 +38,6 @@ exports.search = function(req,res) {
     url += "radius=" + req.query.radius + "&";
     url += "type=" + req.query.pType + "&";
     url += "opennow=true&";
-    url += "rankby=distance&";
     url += "key=" + process.env.gapi;
     request(url,{
         json:true}, function (err,obj) {
