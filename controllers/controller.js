@@ -22,6 +22,14 @@ exports.getHistory = function(req,res) {
     });
 };
 
+exports.createProfile = function(req,res) {
+    var profile = new UserInfo();
+    profile.save(function(err, result) {
+        if (err) throw err;
+        res.send(result)
+    });
+};
+
 exports.search = function(req,res) {
     const request = require('request')
 
@@ -29,7 +37,8 @@ exports.search = function(req,res) {
     url += "location=" + req.query.location + "&";
     url += "radius=" + req.query.radius + "&";
     url += "type=" + req.query.pType + "&";
-    url += "opennow=true&"
+    url += "opennow=true&";
+    url += "rankby=distance&";
     url += "key=" + process.env.gapi;
     request(url,{
         json:true}, function (err,obj) {
@@ -46,14 +55,6 @@ exports.search = function(req,res) {
         }
         res.send(result);
     })
-    };
-
-exports.createProfile = function(req,res) {
-    var profile = new UserInfo();
-    profile.save(function(err, result) {
-        if (err) throw err;
-        res.send(result)
-    });
 };
 
 
