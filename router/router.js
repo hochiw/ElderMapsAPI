@@ -18,6 +18,6 @@ router.get('/api/setProf', controller.createProfile);
 
 router.get('/api/getHistory?', controller.getHistory);
 
-router.get('/api/search?',controller.search);
+router.post('/api/search',controller.search);
 
 module.exports = router;

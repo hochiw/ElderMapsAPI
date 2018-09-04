@@ -34,9 +34,9 @@ exports.search = function(req,res) {
     const request = require('request')
 
     var url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?";
-    url += "location=" + req.query.location + "&";
-    url += "radius=" + req.query.radius + "&";
-    url += "type=" + req.query.pType + "&";
+    url += "location=" + req.body.latitude + "," + req.body.longitude + "&";
+    url += "radius=1500&";
+    url += "type=" + req.body.pType + "&";
     url += "opennow=true&";
     url += "key=" + process.env.gapi;
     request(url,{
