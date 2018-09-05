@@ -39,6 +39,7 @@ exports.search = function(req,res) {
     url += "type=" + req.body.pType + "&";
     url += "opennow=true&";
     url += "key=" + process.env.gapi;
+    console.log(url);
     request(url,{
         json:true}, function (err,obj) {
         if (err) res.send(err);
