@@ -43,6 +43,7 @@ exports.search = function(req,res) {
     request(url,{
         json:true}, function (err,obj) {
         if (err) res.send(err);
+        if (obj.body.status)
         var result = [];
         for (var i = 0;i < obj.body.results.length; i++) {
             if (obj.body.results[i].opening_hours.open_now == false) continue;
@@ -53,7 +54,8 @@ exports.search = function(req,res) {
                 "rating":obj.body.results[i].rating
             }
         }
-        res.send(result);
+        var parent = {"status":obj.body.status,"results":result};
+        res.send(parent);
     })
 };
 
