@@ -43,11 +43,11 @@ exports.direction = function(req,res) {
         var result = []
         for (var v = 0; v < obj.body.routes.length;v++ ) {
             var routes = []
-            for (var i = 0;i < obj.body.routes.legs.length; i++)
+            for (var i = 0;i < obj.body.routes[v].legs.length; i++)
             {
                 var legs = []
-                for (var j =0;j< obj.body.routes.legs[i].steps; j++) {
-                    legs[j] = obj.body.routes.legs[i].steps.intersections.maneuver;
+                for (var j =0;j< obj.body.routes[v].legs[i].steps; j++) {
+                    legs[j] = obj.body.routes[v].legs[i].steps.intersections.maneuver;
                 }
                 routes[i] = legs;
             }
