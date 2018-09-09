@@ -20,4 +20,6 @@ router.get('/api/getHistory?', controller.getHistory);
 
 router.post('/api/search',controller.search);
 
+router.post('/api/route',controller.direction);
+
 module.exports = router;

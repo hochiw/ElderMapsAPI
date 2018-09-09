@@ -29,7 +29,22 @@ exports.createProfile = function(req,res) {
         res.send(result)
     });
 };
+exports.direction = function(req,res) {
+    const request = require('request')
 
+    var url = "https://api.mapbox.com/directions/v5/mapbox/walking/"
+    url += req.body.curLatitude + "," + req.body.curLongitude + ";";
+    url += req.body.desLatitude + "," + req.body.desLongitude + "?";
+    url += "steps=true&access_token=" + process.env.mapboxapi;
+    console.log(url);
+    request(url,{json:true}, function(err,obj) {
+        if (err) res.send(err);
+        res.send(obj.body);
+
+    })
+
+
+}
 exports.search = function(req,res) {
     const request = require('request')
 
@@ -43,7 +58,6 @@ exports.search = function(req,res) {
     request(url,{
         json:true}, function (err,obj) {
         if (err) res.send(err);
-        if (obj.body.status)
         var result = [];
         for (var i = 0;i < obj.body.results.length; i++) {
             if (obj.body.results[i].opening_hours.open_now == false) continue;
