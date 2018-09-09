@@ -29,12 +29,13 @@ exports.createProfile = function(req,res) {
         res.send(result)
     });
 };
+
 exports.direction = function(req,res) {
     const request = require('request')
 
     var url = "https://api.mapbox.com/directions/v5/mapbox/walking/"
-    url += req.body.curLatitude + "," + req.body.curLongitude + ";";
-    url += req.body.desLatitude + "," + req.body.desLongitude + "?";
+    url += req.body.curLongitude + "," + req.body.curLatitude + ";";
+    url += req.body.desLongitude + "," + req.body.desLatitude + "?";
     url += "steps=true&access_token=" + process.env.mapboxapi;
     console.log(url);
     request(url,{json:true}, function(err,obj) {
