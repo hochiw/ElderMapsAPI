@@ -41,14 +41,19 @@ exports.direction = function(req,res) {
     request(url,{json:true}, function(err,obj) {
         if (err) res.send(err);
         var result = []
-        for (var i = 0;i < obj.body.routes.legs.length; i++)
-        {
-            var legs = []
-            for (var j =0;j< obj.body.routes.legs[i].steps; j++) {
-                legs[j] = obj.body.routes.legs[i].steps.intersections.maneuver;
+        for (var v = 0; v < obj.body.routes.length;v++ ) {
+            var routes = []
+            for (var i = 0;i < obj.body.routes.legs.length; i++)
+            {
+                var legs = []
+                for (var j =0;j< obj.body.routes.legs[i].steps; j++) {
+                    legs[j] = obj.body.routes.legs[i].steps.intersections.maneuver;
+                }
+                routes[i] = legs;
             }
-            result[i] = legs;
+            result[v] = routes;
         }
+
             res.send(result);
 
     })
