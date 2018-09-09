@@ -40,7 +40,16 @@ exports.direction = function(req,res) {
     console.log(url);
     request(url,{json:true}, function(err,obj) {
         if (err) res.send(err);
-        res.send(obj.body);
+        var result = []
+        for (var i = 0;i < obj.body.routes.legs.length; i++)
+        {
+            var legs = []
+            for (var j =0;j< obj.body.routes.legs[i].steps; j++) {
+                legs[j] = obj.body.routes.legs[i].steps.intersections.maneuver;
+            }
+            result[i] = legs;
+        }
+            res.send(result);
 
     })
 
