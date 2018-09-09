@@ -42,19 +42,13 @@ exports.direction = function(req,res) {
         if (err) res.send(err);
         var result = []
         for (var v = 0; v < obj.body.routes.length;v++ ) {
-            var routes = []
             for (var i = 0;i < obj.body.routes[v].legs.length; i++)
             {
-                var legs = []
                 for (var j =0;j< obj.body.routes[v].legs[i].steps.length; j++) {
-                    console.log(obj.body.routes[v].legs[i].steps[j]);
-                    legs[j] = obj.body.routes[v].legs[i].steps[j].maneuver;
+                    result.push(obj.body.routes[v].legs[i].steps[j].maneuver);
                 }
-                routes[i] = legs;
             }
-            result[v] = routes;
         }
-
             res.send(result);
 
     })
