@@ -46,8 +46,9 @@ exports.direction = function(req,res) {
             for (var i = 0;i < obj.body.routes[v].legs.length; i++)
             {
                 var legs = []
-                for (var j =0;j< obj.body.routes[v].legs[i].steps; j++) {
-                    legs[j] = obj.body.routes[v].legs[i].steps.intersections.maneuver;
+                for (var j =0;j< obj.body.routes[v].legs[i].steps.length; j++) {
+                    console.log(obj.body.routes[v].legs[i].steps[j]);
+                    legs[j] = obj.body.routes[v].legs[i].steps[j].maneuver;
                 }
                 routes[i] = legs;
             }
