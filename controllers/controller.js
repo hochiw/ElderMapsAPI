@@ -34,15 +34,15 @@ exports.sendQueue = function(req,res) {
 exports.getQueue = function(req,res) {
     Waiting.find({},function(err,ips) {
         if (!err) {
-            var result = {};
+
             if (ips.length > 1) {
                 var pick = ips[Math.floor(Math.random() * ips.length)];
-                result = {
+                var result = {
                     "ip":pick.ip,
                     "port":pick.port
                 };
             } else {
-                result = {
+                var result = {
                     "ip":ips.ip,
                     "port":ips.port
                 };
