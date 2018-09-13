@@ -15,10 +15,11 @@ exports.getProfile = function(req,res) {
 };
 
 exports.sendQueue = function(req,res) {
-    Waiting.find({ip: req.body.ip, port: req.body.port},function(err,ip) {
+    console.log(req.ip);
+    Waiting.find({ip: req.ip, port: req.body.port},function(err,ip) {
         if (!ip.length) {
             var queue = Waiting({
-                ip : req.body.ip,
+                ip : req.ip,
                 port : req.body.port
             });
             queue.save(function(err, result) {
