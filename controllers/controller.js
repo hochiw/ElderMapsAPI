@@ -34,7 +34,20 @@ exports.sendQueue = function(req,res) {
 exports.getQueue = function(req,res) {
     Waiting.find({},function(err,ips) {
         if (!err) {
-            res.send(ips);
+            var result = {};
+            if (ips.length > 1) {
+                var pick = ips[Math.floor(Math.random() * ips.length)];
+                result = {
+                    "ip":pick.ip,
+                    "port":pick.port
+                };
+            } else {
+                result = {
+                    "ip":ips.ip,
+                    "port":ips.port
+                };
+            }
+            res.send(result);
         }
     });
 };
