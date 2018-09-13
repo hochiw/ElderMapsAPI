@@ -32,17 +32,17 @@ exports.sendQueue = function(req,res) {
 };
 
 exports.getQueue = function(req,res) {
-    Waiting.find({ip: req.body.ip, port: req.body.port},function(err,ip) {
+    Waiting.find({},function(err,ips) {
         if (!err) {
-            res.send(ip);
+            res.send(ips);
         }
     });
 };
 
+
 exports.removeFromQueue = function(req,res) {
-    Waiting.find({ip: req.body.ip, port: req.body.port},function(err,ip) {
+    Waiting.remove({ip:req.body.ip}, function(err,result) {
         if (!err) {
-            ip.remove();
             res.sendStatus(200);
         }
     });
