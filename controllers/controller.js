@@ -47,7 +47,7 @@ exports.getQueue = function(req,res) {
 
 
 exports.removeFromQueue = function(req,res) {
-    Waiting.remove({ip:req.body.ip}, function(err,result) {
+    Waiting.remove({ip:req.ip}, function(err,result) {
         if (!err) {
             res.sendStatus(200);
         }
