@@ -22,4 +22,8 @@ router.post('/api/search',controller.search);
 
 router.post('/api/route',controller.direction);
 
+router.post('/api/sendQueue',controller.sendQueue);
+
+router.post('/api/getQueue',controller.getQueue);
+
 module.exports = router;

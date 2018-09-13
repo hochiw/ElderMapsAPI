@@ -1,15 +1,39 @@
 var mongoose = require('mongoose');
-var passwordHash = require('password-hash');
 var server = require('../app');
 
 
 var UserInfo = mongoose.model('profile');
+var Waiting = mongoose.model('waitingList');
 var exports = module.exports = {};
 
 exports.getProfile = function(req,res) {
     UserInfo.findOne({_id: req.query.id},function(err,user) {
         if(!err) {
             res.send(user);
+        }
+    });
+};
+
+exports.sendQueue = function(req,res) {
+    Waiting.find({ip: req.body.ip, port: req.body.port},function(err,ip) {
+        if (!ip.length) {
+            var queue = Waiting({
+                ip : req.body.ip,
+                port : req.body.port
+            });
+            queue.save(function(err, result) {
+                if (!err) {
+                    res.send(result);
+                }
+            })
+        }
+    })
+};
+
+exports.getQueue = function(req,res) {
+    Waiting.find({ip: req.body.ip, port: req.body.port},function(err,ip) {
+        if (!err) {
+            res.send(ip);
         }
     });
 };
