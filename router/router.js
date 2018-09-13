@@ -24,6 +24,8 @@ router.post('/api/route',controller.direction);
 
 router.post('/api/sendQueue',controller.sendQueue);
 
+router.post('/api/rmQueue',controller.removeFromQueue);
+
 router.post('/api/getQueue',controller.getQueue);
 
 module.exports = router;

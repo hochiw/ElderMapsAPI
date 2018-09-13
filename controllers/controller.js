@@ -23,7 +23,7 @@ exports.sendQueue = function(req,res) {
             });
             queue.save(function(err, result) {
                 if (!err) {
-                    res.send(result);
+                    res.sendStatus(201);
                 }
             })
         }
@@ -34,6 +34,15 @@ exports.getQueue = function(req,res) {
     Waiting.find({ip: req.body.ip, port: req.body.port},function(err,ip) {
         if (!err) {
             res.send(ip);
+        }
+    });
+};
+
+exports.removeFromQueue = function(req,res) {
+    Waiting.find({ip: req.body.ip, port: req.body.port},function(err,ip) {
+        if (!err) {
+            ip.remove();
+            res.sendStatus(200);
         }
     });
 };
