@@ -7,7 +7,6 @@ require("./models/database.js");
 
 
 var router = require('./router/router.js');
-var ws = require('./WebSocket/server.js');
 
 app.use('/',router);
 app.use(express.static(__dirname));
