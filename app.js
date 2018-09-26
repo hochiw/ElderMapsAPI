@@ -7,11 +7,14 @@ require("./models/database.js");
 
 
 var router = require('./router/router.js');
+var ws = require('./WebSocket/server.js');
 
 app.use('/',router);
 app.use(express.static(__dirname));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 
+
 const PORT = process.env.PORT || 4100;
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
+
