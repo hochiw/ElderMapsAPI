@@ -8,6 +8,7 @@ var UserInfo = mongoose.Schema(
             default: 0
         },
         "survey" : {
+            "completed": {type:Number,default: 0},
             "textSize" : {
                 type: Number,
                 enum: [0,20,25,30,35],

@@ -40,6 +40,7 @@ exports.createProfile = function(req,res) {
             }
             if (user != null) {
                 res.send(user);
+
             } else {
                 newProfile.save(function (err) {
                     if (err) {
