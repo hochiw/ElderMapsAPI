@@ -12,9 +12,9 @@ router.get("/api",function(req,res) {
     res.send("This is the home page for the API");
 })
 
-router.get("/api/getProf?",controller.getProfile);
+router.post('/api/profile', controller.createProfile);
 
-router.get('/api/setProf', controller.createProfile);
+router.post('/api/updateProfile',controller.updateProfile);
 
 router.get('/api/getHistory?', controller.getHistory);
 
@@ -22,10 +22,5 @@ router.post('/api/search',controller.search);
 
 router.post('/api/route',controller.direction);
 
-router.post('/api/sendQueue',controller.sendQueue);
-
-router.post('/api/rmQueue',controller.removeFromQueue);
-
-router.post('/api/getQueue',controller.getQueue);
 
 module.exports = router;

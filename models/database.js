@@ -11,4 +11,3 @@ mongoose.connect(url,{useNewUrlParser: true}).then(
     err => {console.log("Error: Failed to connect to database")});
 
 require('./user.js');
-require('./waitingList.js');

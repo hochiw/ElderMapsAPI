@@ -3,7 +3,6 @@ var server = require('../app');
 
 
 var UserInfo = mongoose.model('profile');
-var Waiting = mongoose.model('waitingList');
 var exports = module.exports = {};
 
 exports.getProfile = function(req,res) {
@@ -14,45 +13,6 @@ exports.getProfile = function(req,res) {
     });
 };
 
-exports.sendQueue = function(req,res) {
-    console.log(req.ip);
-    Waiting.find({ip: req.ip, port: req.body.port},function(err,ip) {
-        if (!ip.length) {
-            var queue = Waiting({
-                ip : req.ip,
-                port : req.body.port
-            });
-            queue.save(function(err, result) {
-                if (!err) {
-                    res.sendStatus(201);
-                }
-            })
-        }
-    })
-};
-
-exports.getQueue = function(req,res) {
-    Waiting.find({},function(err,ips) {
-        if (!err) {
-            var pick = ips[Math.floor(Math.random() * ips.length)];
-            var address = pick.ip.split(":");
-            var result = {
-                "ip":address[address.length - 1],
-                "port":pick.port
-            };
-            res.send(result);
-        }
-    });
-};
-
-
-exports.removeFromQueue = function(req,res) {
-    Waiting.remove({ip:req.ip}, function(err,result) {
-        if (!err) {
-            res.sendStatus(200);
-        }
-    });
-};
 
 exports.getHistory = function(req,res) {
     UserInfo.findOne({_id: req.query.id},function(err,user) {
@@ -63,12 +23,54 @@ exports.getHistory = function(req,res) {
 };
 
 exports.createProfile = function(req,res) {
-    var profile = new UserInfo();
-    profile.save(function(err, result) {
-        if (err) throw err;
-        res.send(result)
+
+    var newProfile = new UserInfo({
+        "userID":req.body.userID,
+        "survey":{
+            "textSize":req.body.textSize,
+            "walking": req.body.walking,
+            "userData": req.body.userData,
+        }
     });
-};
+
+    UserInfo.findOne({userID: req.body.id},function(err,user) {
+            if (err)  {
+                res.sendStatus(403);
+                return null;
+            }
+            if (user != null) {
+                res.send(user);
+            } else {
+                newProfile.save(function (err) {
+                    if (err) {
+                        res.sendStatus(403);
+                    } else {
+                        res.sendStatus(201);
+                    }
+                })
+            }
+        })
+    };
+
+exports.updateProfile = function(req,res) {
+    UserInfo.findOne({userID:req.body.userID}, function(err, result) {
+        if (err) {
+            res.sendStatus(403);
+            return null;
+        } else {
+            result["survey"][req.body.key] = req.body.value;
+            console.log(req.body.key);
+            console.log(result[req.body.key]);
+            result.save(function (err) {
+                if (!err) {
+                    res.sendStatus(202);
+                } else {
+                    res.sendStatus(403);
+                }
+            })
+        }
+    })
+}
 
 exports.direction = function(req,res) {
     const request = require('request')

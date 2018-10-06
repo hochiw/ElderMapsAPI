@@ -1,20 +1,56 @@
 var mongoose = require('mongoose');
 var UserInfo = mongoose.Schema(
     {
-        "isHelper" : {type: Boolean, default: false},
-        "condition": {
-            "walkPace": {type: Number, default: 1},
-            "hasCar": {type: Boolean, default: false}
+        "userID": {type: String, default:""},
+        "userType" : {
+            type: Number,
+            enum: [0,1],
+            default: 0
         },
-        "history": [{
-            "name": {type: String},
-            "address" : {type: String},
-            "location": {
-                "latitude": {type: Number},
-                "longitude": {type: Number}
+        "survey" : {
+            "textSize" : {
+                type: Number,
+                enum: [0,20,25,30,35],
+                default: 25
             },
-            "rating": {type: Number},
-            "time": {type: Date, default: Date.now}
+            "walking" : {
+                type: Number,
+                enum: [0,5,10,15,20],
+                default: 10
+            },
+            "userData" : {type: Number,default: 0}
+        },
+        "schedule" : [{
+            "id": {type: Number},
+            "datetime": {
+                "year" : {type: Number},
+                "month" : {type: Number},
+                "day" : {type: Number},
+                "hour": {type: Number},
+                "minute" : {type: Number}
+            },
+            "location": {
+                "name" : {type: String},
+                "latitude": {type: Number},
+                "longitude": {type: Number},
+                "bearing" : {type: Number}
+            }
+        }],
+        "history": [{
+            "id": {type: Number},
+            "date": {
+                "year" : {type: Number},
+                "month" : {type: Number},
+                "day" : {type: Number}
+            },
+            "location": {
+                "name": {type: String},
+                "latitude": {type: Number},
+                "longitude": {type: Number},
+                "bearing" : {type: Number},
+                "rating": {type: Number}
+            },
+            "tripRating": {type: Number}
         }]
     }
 );
