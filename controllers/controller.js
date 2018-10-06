@@ -33,7 +33,7 @@ exports.createProfile = function(req,res) {
         }
     });
 
-    UserInfo.findOne({userID: req.body.id},function(err,user) {
+    UserInfo.findOne({userID: req.body.userID},function(err,user) {
             if (err)  {
                 res.sendStatus(403);
                 return null;
