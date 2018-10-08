@@ -16,7 +16,21 @@ router.post('/api/profile', controller.createProfile);
 
 router.post('/api/updateProfile',controller.updateProfile);
 
-router.get('/api/getHistory?', controller.getHistory);
+router.post('/api/history', controller.history);
+
+router.post('/api/getHistory', controller.getHistory);
+
+router.post('/api/delHistory', controller.delHistory);
+
+router.post('/api/updateHistory', controller.updateHistory);
+
+router.post('/api/plan', controller.plan);
+
+router.post('/api/getPlan', controller.getPlan);
+
+router.post('/api/delPlan', controller.delPlan);
+
+router.post('/api/updatePlan', controller.updatePlan);
 
 router.post('/api/search',controller.search);
 

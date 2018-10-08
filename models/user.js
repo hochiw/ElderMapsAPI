@@ -33,25 +33,23 @@ var UserInfo = mongoose.Schema(
             "location": {
                 "name" : {type: String},
                 "latitude": {type: Number},
-                "longitude": {type: Number},
-                "bearing" : {type: Number}
+                "longitude": {type: Number}
             }
         }],
         "history": [{
-            "id": {type: Number},
+            "id": {type: Number, required: true},
             "date": {
-                "year" : {type: Number},
-                "month" : {type: Number},
-                "day" : {type: Number}
+                "year" : {type: Number, required: true},
+                "month" : {type: Number, required: true},
+                "day" : {type: Number, required: true}
             },
             "location": {
-                "name": {type: String},
-                "latitude": {type: Number},
-                "longitude": {type: Number},
-                "bearing" : {type: Number},
-                "rating": {type: Number}
+                "name": {type: String, required: true},
+                "latitude": {type: Number, required: true},
+                "longitude": {type: Number, required: true},
+                "rating": {type: Number, required: true}
             },
-            "tripRating": {type: Number}
+            "tripRating": {type: Number, required: true}
         }]
     }
 );

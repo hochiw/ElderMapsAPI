@@ -5,22 +5,161 @@ var server = require('../app');
 var UserInfo = mongoose.model('profile');
 var exports = module.exports = {};
 
-exports.getProfile = function(req,res) {
-    UserInfo.findOne({_id: req.query.id},function(err,user) {
-        if(!err) {
-            res.send(user);
-        }
-    });
-};
 
+exports.delHistory = function(req,res) {
+    UserInfo.findOne({"userID": req.body.userID},function(err,user) {
+        user.history.forEach(function(element,index) {
+            if (element.id == req.body.id) {
+                user.history.splice(index,1);
+                user.save(function(err) {
+                    if (!err) {
+                        res.sendStatus(200);
+                    } else {
+                        res.sendStatus(403);
+                    }
+                })
+            }
+        })
+    })
+}
 
 exports.getHistory = function(req,res) {
-    UserInfo.findOne({_id: req.query.id},function(err,user) {
+    UserInfo.findOne({"userID": req.body.userID},function(err,user) {
+        user.history.forEach(function(element) {
+            if (element.id == req.body.id) {
+                res.send(element);
+            }
+        })
+    })
+}
+
+exports.updateHistory = function(req,res) {
+    UserInfo.findOne({"userID": req.body.userID},function(err,user) {
+        user.history.forEach(function(element) {
+            if (element.id == req.body.id) {
+                element[req.body.key] = req.body.value;
+                user.save(function (err) {
+                    if (!err) {
+                        res.sendStatus(202);
+                    } else {
+                        res.sendStatus(403);
+                    }
+                })
+            }
+        })
+    })
+}
+
+exports.history = function(req,res) {
+    UserInfo.findOne({"userID": req.body.userID},function(err,user) {
         if(!err) {
-            res.send(user.history);
+            var history = {
+                "id":req.body.id,
+                "date": {
+                    "year":req.body.year,
+                    "month":req.body.month,
+                    "day":req.body.day
+                },
+                "location":{
+                    "name":req.body.name,
+                    "latitude":req.body.latitude,
+                    "longitude":req.body.longitude,
+                    "rating":req.body.rating
+                },
+                "tripRating":req.body.tripRating
+            }
+
+            user.history.push(history);
+            user.save(function (err) {
+                if (!err) {
+                    res.sendStatus(201);
+                } else {
+                    res.send(user.history);
+                }
+            });
+        } else {
+            res.sendStatus(403);
         }
     });
 };
+
+exports.plan = function(req,res) {
+    UserInfo.findOne({"userID": req.body.userID},function(err,user) {
+        if(!err) {
+            var plan = {
+                "id":req.body.id,
+                "datetime": {
+                    "year":req.body.year,
+                    "month":req.body.month,
+                    "day":req.body.day,
+                    "hour":req.body.hour,
+                    "minute":req.body.minute
+                },
+                "location":{
+                    "name":req.body.name,
+                    "latitude":req.body.latitude,
+                    "longitude":req.body.longitude,
+                }
+            }
+
+            user.schedule.push(plan);
+            user.save(function (err) {
+                if (!err) {
+                    res.sendStatus(201);
+                } else {
+                    res.send(user.plan);
+                }
+            });
+        } else {
+            res.sendStatus(403);
+        }
+    });
+};
+
+exports.delPlan = function(req,res) {
+    UserInfo.findOne({"userID": req.body.userID},function(err,user) {
+        user.schedule.forEach(function(element,index) {
+            if (element.id == req.body.id) {
+                user.schedule.splice(index,1);
+                user.save(function(err) {
+                    if (!err) {
+                        res.sendStatus(200);
+                    } else {
+                        res.sendStatus(403);
+                    }
+                })
+            }
+        })
+    })
+}
+
+exports.getPlan = function(req,res) {
+    UserInfo.findOne({"userID": req.body.userID},function(err,user) {
+        user.schedule.forEach(function(element) {
+            if (element.id == req.body.id) {
+                res.send(element);
+            }
+        })
+    })
+}
+
+exports.updatePlan = function(req,res) {
+    UserInfo.findOne({"userID": req.body.userID},function(err,user) {
+        user.schedule.forEach(function(element) {
+            if (element.id == req.body.id) {
+                element[req.body.key] = req.body.value;
+                user.save(function (err) {
+                    if (!err) {
+                        res.sendStatus(202);
+                    } else {
+                        res.sendStatus(403);
+                    }
+                })
+            }
+        })
+    })
+}
+
 
 exports.createProfile = function(req,res) {
 
@@ -60,8 +199,6 @@ exports.updateProfile = function(req,res) {
             return null;
         } else {
             result["survey"][req.body.key] = req.body.value;
-            console.log(req.body.key);
-            console.log(result[req.body.key]);
             result.save(function (err) {
                 if (!err) {
                     res.sendStatus(202);
