@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var UserInfo = mongoose.Schema(
     {
-        "userID": {type: String, default:""},
+        "userID": {type: String, required:true},
         "userType" : {
             type: Number,
             enum: [0,1],
