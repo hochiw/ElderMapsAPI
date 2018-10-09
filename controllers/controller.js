@@ -64,8 +64,8 @@ exports.history = function(req,res) {
                     "name":req.body.name,
                     "latitude":req.body.latitude,
                     "longitude":req.body.longitude,
-                    "rating":req.body.rating
                 },
+                "locationRating";req.body.locationRating,
                 "tripRating":req.body.tripRating
             }
 

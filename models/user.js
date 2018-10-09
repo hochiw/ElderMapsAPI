@@ -47,8 +47,8 @@ var UserInfo = mongoose.Schema(
                 "name": {type: String, required: true},
                 "latitude": {type: Number, required: true},
                 "longitude": {type: Number, required: true},
-                "rating": {type: Number, required: true}
             },
+            "locationRating": {type: Number, required: true},
             "tripRating": {type: Number, required: true}
         }]
     }
