@@ -88,6 +88,8 @@ exports.getAllHistory = function(req,res) {
     UserInfo.findOne({"userID": req.body.userID},function(err,user) {
         if (!err && user != null) {
             res.send(user.history);
+        } else {
+            res.sendStatus(403);
         }
     })
 }
@@ -96,11 +98,14 @@ exports.getAllPlan = function(req,res) {
     UserInfo.findOne({"userID": req.body.userID},function(err,user) {
         if (!err && user != null) {
             res.send(user.schedule);
+        } else {
+            res.sendStatus(403);
         }
     })
 }
 
 exports.createPlan = function(req,res) {
+    console.log(req.body);
     UserInfo.findOne({"userID": req.body.userID},function(err,user) {
         if(!err) {
             var plan = {
@@ -180,6 +185,8 @@ exports.getProfile = function(req,res) {
     UserInfo.findOne({userID:req.body.userID},function(err,user) {
         if (!err && user != null) {
             res.send(user);
+        } else {
+            res.sendStatus(403);
         }
     })
 }
