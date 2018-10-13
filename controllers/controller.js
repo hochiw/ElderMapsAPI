@@ -50,7 +50,7 @@ exports.updateHistory = function(req,res) {
     })
 }
 
-exports.history = function(req,res) {
+exports.createHistory = function(req,res) {
     UserInfo.findOne({"userID": req.body.userID},function(err,user) {
         if(!err) {
             var history = {
@@ -64,6 +64,7 @@ exports.history = function(req,res) {
                     "name":req.body.name,
                     "latitude":req.body.latitude,
                     "longitude":req.body.longitude,
+                    "type": req.body.type
                 },
                 "locationRating":req.body.locationRating,
                 "tripRating":req.body.tripRating
@@ -74,7 +75,7 @@ exports.history = function(req,res) {
                 if (!err) {
                     res.sendStatus(201);
                 } else {
-                    res.send(user.history);
+                    res.sendStatus(403);
                 }
             });
         } else {
@@ -83,7 +84,23 @@ exports.history = function(req,res) {
     });
 };
 
-exports.plan = function(req,res) {
+exports.getAllHistory = function(req,res) {
+    UserInfo.findOne({"userID": req.body.userID},function(err,user) {
+        if (!err && user != null) {
+            res.send(user.history);
+        }
+    })
+}
+
+exports.getAllPlan = function(req,res) {
+    UserInfo.findOne({"userID": req.body.userID},function(err,user) {
+        if (!err && user != null) {
+            res.send(user.schedule);
+        }
+    })
+}
+
+exports.createPlan = function(req,res) {
     UserInfo.findOne({"userID": req.body.userID},function(err,user) {
         if(!err) {
             var plan = {
@@ -99,6 +116,7 @@ exports.plan = function(req,res) {
                     "name":req.body.name,
                     "latitude":req.body.latitude,
                     "longitude":req.body.longitude,
+                    "type": req.body.type
                 }
             }
 
@@ -106,8 +124,6 @@ exports.plan = function(req,res) {
             user.save(function (err) {
                 if (!err) {
                     res.sendStatus(201);
-                } else {
-                    res.send(user.plan);
                 }
             });
         } else {
@@ -160,7 +176,13 @@ exports.updatePlan = function(req,res) {
     })
 }
 
-
+exports.getProfile = function(req,res) {
+    UserInfo.findOne({userID:req.body.userID},function(err,user) {
+        if (!err && user != null) {
+            res.send(user);
+        }
+    })
+}
 exports.createProfile = function(req,res) {
 
     var newProfile = new UserInfo({
@@ -177,10 +199,7 @@ exports.createProfile = function(req,res) {
                 res.sendStatus(403);
                 return null;
             }
-            if (user != null) {
-                res.send(user);
-
-            } else {
+            if (user == null) {
                 newProfile.save(function (err) {
                     if (err) {
                         res.sendStatus(403);

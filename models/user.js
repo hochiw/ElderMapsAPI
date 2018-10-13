@@ -33,7 +33,8 @@ var UserInfo = mongoose.Schema(
             "location": {
                 "name" : {type: String},
                 "latitude": {type: Number},
-                "longitude": {type: Number}
+                "longitude": {type: Number},
+                "type": {type: Number}
             }
         }],
         "history": [{
@@ -47,6 +48,7 @@ var UserInfo = mongoose.Schema(
                 "name": {type: String, required: true},
                 "latitude": {type: Number, required: true},
                 "longitude": {type: Number, required: true},
+                "type": {type: Number}
             },
             "locationRating": {type: Number, required: true},
             "tripRating": {type: Number, required: true}

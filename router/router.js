@@ -12,11 +12,15 @@ router.get("/api",function(req,res) {
     res.send("This is the home page for the API");
 })
 
-router.post('/api/profile', controller.createProfile);
+router.post('/api/createProfile', controller.createProfile);
+
+router.post('/api/getProfile', controller.getProfile);
 
 router.post('/api/updateProfile',controller.updateProfile);
 
-router.post('/api/history', controller.history);
+router.post('/api/createHistory', controller.createHistory);
+
+router.post('/api/getAllHistory', controller.getAllHistory);
 
 router.post('/api/getHistory', controller.getHistory);
 
@@ -24,7 +28,9 @@ router.post('/api/delHistory', controller.delHistory);
 
 router.post('/api/updateHistory', controller.updateHistory);
 
-router.post('/api/plan', controller.plan);
+router.post('/api/createPlan', controller.createPlan);
+
+router.post('/api/getAllPlan', controller.getAllPlan);
 
 router.post('/api/getPlan', controller.getPlan);
 
